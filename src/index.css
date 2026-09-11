@@ -1,0 +1,148 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-dark: #070709;
+    --bg-parchment: #F4EFE6;
+    --gold-primary: #C5A869;
+    --gold-glow: rgba(197, 168, 105, 0.15);
+    --crimson-accent: #8B1E28;
+    --ink-dim: rgba(244, 239, 230, 0.65);
+  }
+
+  body {
+    background-color: #08080B;
+    color: #F4EFE6;
+    font-family: 'Space Grotesk', sans-serif;
+    background-image: 
+      radial-gradient(circle at 50% 0%, rgba(197, 168, 105, 0.05) 0%, transparent 60%),
+      radial-gradient(circle at 100% 50%, rgba(139, 30, 40, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 0% 80%, rgba(197, 168, 105, 0.04) 0%, transparent 50%);
+    background-attachment: fixed;
+  }
+
+  /* Custom subtle scrollbar styled like antique brass rule */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #08080B;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #2A261F;
+    border-radius: 3px;
+    border: 1px solid rgba(197, 168, 105, 0.2);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #C5A869;
+  }
+}
+
+/* Archival noise texture overlay */
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  content: "";
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Manuscript border accents */
+.manuscript-border {
+  border: 1px solid rgba(197, 168, 105, 0.2);
+  position: relative;
+}
+
+.manuscript-border::before,
+.manuscript-border::after {
+  content: "✦";
+  position: absolute;
+  font-size: 10px;
+  color: #C5A869;
+  opacity: 0.7;
+}
+
+.manuscript-border::before {
+  top: -6px;
+  left: -6px;
+}
+
+.manuscript-border::after {
+  bottom: -6px;
+  right: -6px;
+}
+
+/* Astrolabe & Celestial rotating animation */
+@keyframes rotateClockwise {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rotateCounterClockwise {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+.animate-astrolabe-slow {
+  animation: rotateClockwise 120s linear infinite;
+}
+
+.animate-astrolabe-reverse {
+  animation: rotateCounterClockwise 160s linear infinite;
+}
+
+.animate-gear-turn {
+  animation: rotateClockwise 45s linear infinite;
+}
+
+/* Gold shimmer gradient for high-contrast headlines */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #FAF4E8 0%, #E2CCA1 45%, #C5A869 75%, #8C6D46 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gold-burnished {
+  background: linear-gradient(180deg, #F4EFE6 10%, #D4BA85 60%, #9E7D3B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.border-gold-subtle {
+  border-color: rgba(197, 168, 105, 0.22);
+}
+
+.border-gold-glow {
+  box-shadow: 0 0 15px rgba(197, 168, 105, 0.12), inset 0 0 15px rgba(197, 168, 105, 0.05);
+}
+
+/* Technical blueprint dashed grid */
+.tech-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(197, 168, 105, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(197, 168, 105, 0.05) 1px, transparent 1px);
+}
+
+.fine-dots-pattern {
+  background-image: radial-gradient(rgba(197, 168, 105, 0.15) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Hide default cursor on desktop when custom cursor active */
+@media (hover: hover) and (pointer: fine) {
+  body {
+    cursor: none;
+  }
+  a, button, input, [role="button"] {
+    cursor: none;
+  }
+}
